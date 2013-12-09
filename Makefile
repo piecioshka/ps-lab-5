@@ -4,7 +4,7 @@ TARGET = bin/
 SRC = source/
 
 zad1:
-	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+	${CC} ${CFLAGS} ${SRC}$@/system.c -o ${TARGET}$@/system.o
 
 clean:
 	find . -name "*.o" | xargs rm
