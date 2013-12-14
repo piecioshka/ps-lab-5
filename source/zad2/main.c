@@ -1,5 +1,6 @@
 /**
- * Zadanie 2. Procesy - użycie funkcji fork()
+ * Zadanie 2.
+ * Procesy - użycie funkcji fork()
  * Napisz program, który tworzy jeden proces potomny. 
  * Proces potomny wyświetla n razy zestaw małych liter alfabetu (czyli litery od a do z), 
  * proces macierzysty wyświetla n razy zestaw wielkich liter alfabetu (czyli litery od A do Z.

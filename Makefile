@@ -9,6 +9,12 @@ zad1:
 zad2:
 	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
 
+zad3:
+	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+
+zad4:
+	${CC} ${CFLAGS} ${SRC}$@/shell.c -o ${TARGET}$@/shell.o
+
 clean:
 	find . -name "*.o" | xargs rm
 
