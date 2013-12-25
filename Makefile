@@ -19,6 +19,9 @@ zad5:
 	${CC} ${CFLAGS} ${SRC}$@/sigcatch.c -o ${TARGET}$@/sigcatch.o
 	${CC} ${CFLAGS} ${SRC}$@/raise.c -o ${TARGET}$@/raise.o
 
+zad6:
+	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+
 clean:
 	find . -name "*.o" | xargs rm
 
