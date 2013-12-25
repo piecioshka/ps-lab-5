@@ -1,3 +1,9 @@
+/**
+ * Zadanie 4. Kody zakończenia procesów potomnych
+ * W pliku shell.c znajduje się prosty shell umożliwiajmy
+ * wykonywanie poleceń podanych w wierszu wywołania.
+ * Uzupełnij go o zwracanie informacji o sposobie zakończenia wykonywanego polecenia.
+ */
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <signal.h>
@@ -59,4 +65,3 @@ int main(void) {
         putchar('\n');
     }
 }
-
