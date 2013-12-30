@@ -25,6 +25,25 @@ zad6:
 zad7:
 	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
 
+zad8:
+	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+
+zad9:
+	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+
+zad10:
+	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+
+zad11:
+	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+
+zad12:
+	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+
+zad13:
+	${CC} ${CFLAGS} ${SRC}$@/sig_reciver.c -o ${TARGET}$@/sig_reciver.o
+	${CC} ${CFLAGS} ${SRC}$@/sig_sender.c -o ${TARGET}$@/sig_sender.o
+
 clean:
 	find . -name "*.o" | xargs rm
 
