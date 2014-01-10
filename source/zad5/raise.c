@@ -22,10 +22,10 @@ int main() {
 
     if (ret > 0) {		
         printf("Rodzic: to jest proces macierzysty (pid %d)\n", getpid());
-        // proces rodzica dodaje obsługę na sygnał customowy: SIGUSR1
+        /* proces rodzica dodaje obsługę na sygnał customowy: SIGUSR1 */
         signal(SIGUSR1, usr1_handler);
         role = 0;
-        // wtrzymuje proces rodzica, w tym czasie wykonuje się proces potomka
+        /* wtrzymuje proces rodzica, w tym czasie wykonuje się proces potomka */
         pause();
         printf("Rodzic: czekam na zakonczenie potomka\n");
         ret = wait(&status);
@@ -34,7 +34,7 @@ int main() {
         role = 1;
         sleep(1);
         printf("Potomek: Wysylam SIGUSR1 do pid %d\n", getppid());
-        // proces potomka wysyła do procesu macierzystego customowy sygnał: SIGUSR1
+        /* proces potomka wysyła do procesu macierzystego customowy sygnał: SIGUSR1 */
         kill(getppid(), SIGUSR1);
         sleep(2);
     } else {			

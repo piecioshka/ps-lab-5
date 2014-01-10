@@ -19,24 +19,24 @@ void sigalrm_handler() {
 }
 
 int main(int argc, char * argv[]) {
-    // hasło użytkownika
+    /* hasło użytkownika */
     char password;
 
     printf("Wpisz haslo (masz na to %d sek.): ", TIME);
 
-    // dodajemy obsługę sygnału SIGALRM
+    /* dodajemy obsługę sygnału SIGALRM */
     signal(SIGALRM, sigalrm_handler);
 
-    // wysyłamy sygnał SIGALRM za określoną liczbę sekund
+    /* wysyłamy sygnał SIGALRM za określoną liczbę sekund */
     alarm(TIME);
 
-    // czyścimy bufor
+    /* czyścimy bufor */
     fflush(stdout);
 
-    // pobieramy hasło od użytkownika
+    /* pobieramy hasło od użytkownika */
     scanf("%s", &password);
 
-    // sprawdzamy, czy hasło jest poprawne
+    /* sprawdzamy, czy hasło jest poprawne */
     if (strcmp(&password, PASSWORD) == 0) {
         printf("Haslo poprawne!\n");
         exit(0);
@@ -45,7 +45,7 @@ int main(int argc, char * argv[]) {
         exit(2);
     }
 
-    // czekamy na syngał
+    /* czekamy na syngał */
     pause();
 
     return 0;

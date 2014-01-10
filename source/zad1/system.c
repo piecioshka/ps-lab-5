@@ -20,10 +20,10 @@ int main(void) {
     int status;
     char command[BUFSIZ];
 
-    // save current value of LANG variable
+    /* save current value of LANG variable */
     char * cache_lang = getenv("LANG");
 
-    // set LANG to english version
+    /* set LANG to english version */
     setenv("LANG", "en_EN", 1);
 
     for (i=0; days[i].abbrev != NULL; i++) {
@@ -36,9 +36,8 @@ int main(void) {
         }
     }
 
-    // restore default value
+    /* restore default value */
     setenv("LANG", cache_lang, 1);
 
     exit(0);
 }
-

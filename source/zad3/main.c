@@ -12,19 +12,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 int main(int argc, char * argv[]) {
     int child;
 
-    // utworzenie potomka
+    /* utworzenie potomka */
     switch (child = fork()) {
         case -1: printf("error\n"); break;
         case 0:
-            // potomek
+            /* potomek */
             system("/bin/echo \"Today is:\"");
             break;
         default:
-            // macierzysty
+            /* macierzysty */
             wait(NULL);
             system("/bin/date");
     }

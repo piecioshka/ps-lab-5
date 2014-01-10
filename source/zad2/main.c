@@ -22,17 +22,17 @@ int main(int argc, char * argv[]) {
 
     n = atoi(argv[1]);
 
-    // tworzymy nowy proces
+    /* tworzymy nowy proces */
     switch (child = fork()) {
         case -1: printf("error"); break;
         case 0:
-            // potomny
+            /* potomny */
             for(i = 0; i < n; ++i) {
                 printf("a");
             }
             break;
         default:
-            // macierzysty
+            /* macierzysty */
             for(i = 0; i < n; ++i) {
                 printf("A");
             }

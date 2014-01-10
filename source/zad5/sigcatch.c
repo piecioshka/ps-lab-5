@@ -12,18 +12,18 @@
 #include <unistd.h>
 
 void catch_ctlc(int sig_num) {
-    printf("Przechwycono Control-C\n"); // 2
+    printf("Przechwycono Control-C\n"); /* 2 */
     fflush(stdout);
     return;
 }
 
 int main() {
-    // funkcja signal() pozwala na obsługę przechwyconego sygnału
+    /* funkcja signal() pozwala na obsługę przechwyconego sygnału */
     signal(SIGINT, catch_ctlc);
-    printf("Dzialam ...\n"); // 1
-    // funkcja pause() zatrzymuje proces dopóki nie zostanie dostarczony sygnał,
-    // program działa dalej gdy zakończy się działanie obsługi sygnału
+    printf("Dzialam ...\n"); /* 1 */
+    /* funkcja pause() zatrzymuje proces dopóki nie zostanie dostarczony sygnał, */
+    /* program działa dalej gdy zakończy się działanie obsługi sygnału */
     pause();
-    printf("Bye!\n"); // 3
+    printf("Bye!\n"); /* 3 */
     return 0;
 }

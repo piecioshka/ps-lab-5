@@ -23,7 +23,7 @@ int shellcmd(char *command) {
     }
 
     if (pid == 0) {
-        execl("/bin/sh", "sh", "-c", command, 0);
+        execl("/bin/sh", "sh", "-c", command, NULL);
         _exit(127);
     }
 
@@ -49,18 +49,18 @@ int main(void) {
     int status;
     char command[BUFSIZ];
 
-    // Forever...
+    /* Forever... */
     for (;;) {
         printf("Enter a command: ");
         if (fgets(command, sizeof(command), stdin) == NULL) {
             putchar('\n');
             exit(0);
         }
-        // kończymy łańcuch znaków zerem, aby był to pełnoprawny string
+        /* kończymy łańcuch znaków zerem, aby był to pełnoprawny string */
         command[strlen(command)-1] = '\0';
-        // uruchamiamy polecenie i zwracamy status polecenia
+        /* uruchamiamy polecenie i zwracamy status polecenia */
         status = shellcmd(command);
-        // wyświetlamy status zakończenia procesu potomka
+        /* wyświetlamy status zakończenia procesu potomka */
         prstat(status);
         putchar('\n');
     }

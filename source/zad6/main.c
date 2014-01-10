@@ -41,19 +41,21 @@ void print_message() {
 }
 
 int main(int argc, char * argv[]) {
-    // parametr wymagany
+    int seconds;
+
+    /* parametr wymagany */
     if (argc != 2) {
         fprintf(stderr, "Podaj liczbe sekund\n");
         exit(1);
     }
 
-    // rzutujemy parametr na integera
-    int seconds = atoi(argv[1]);
+    /* rzutujemy parametr na integera */
+    seconds = atoi(argv[1]);
 
-    // dodanie handlera na SIGINT
+    /* dodanie handlera na SIGINT */
     signal(SIGINT, sigint_handler);
 
-    // co n sekund wyświetlamy napis
+    /* co n sekund wyświetlamy napis */
     create_interval(seconds, print_message);
 
     return 0;
