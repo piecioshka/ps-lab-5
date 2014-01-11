@@ -26,7 +26,7 @@ zad7:
 	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
 
 zad8:
-	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o
+	gcc-4.2 -Wall -pedantic -pedantic-errors ${SRC}$@/main.c -o ${TARGET}$@/main.o
 
 zad9:
 	${CC} ${CFLAGS} ${SRC}$@/main.c -o ${TARGET}$@/main.o

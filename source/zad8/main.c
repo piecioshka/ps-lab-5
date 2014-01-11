@@ -18,6 +18,8 @@
 #include <string.h>
 #include <syslog.h>
 
+#define FILENAME "zad8.conf"
+
 int get_current_timestamp() {
     time_t current;
     return time(&current);
@@ -30,10 +32,7 @@ int file_exists(char * filename) {
 void append_file_content(char * filename, char * cnt) {
     FILE *fp;
     if ((fp = fopen(filename, "a+")) == NULL) {
-        /* domyslny komunikat, jesli nie jest demonem */
-        /* fprintf(stderr, "Can't open file: %s\n", filename); */
-
-        /* jesli program jest demonem to wszelkie bledy wysylamy do sysloga */
+        fprintf(stderr, "Can't open file: %s\n", filename);
         syslog(LOG_ERR, "Can't open file: %s\n", filename);
 
         exit(1);
@@ -42,11 +41,13 @@ void append_file_content(char * filename, char * cnt) {
     fclose (fp);
 }
 
+static int x;
+
 void create_interval(int seconds, void (*func)()) {
     time_t start, end;
     time(&start);
 
-    for(;;) {
+    for(x = 1;x == 1;) {
         time(&end);
         if (difftime(end, start) >= seconds) {
             func();
@@ -56,21 +57,59 @@ void create_interval(int seconds, void (*func)()) {
     }
 }
 
+void clear_interval() {
+    x = 2;
+}
+
 void save_time_to_file() {
     char timestamp[12];
     sprintf(timestamp, "%d\n", get_current_timestamp());
     append_file_content("test_file.dat", timestamp);
 }
 
+int load_configuration_time(char * filename) {
+    FILE * fd;
+    int time = -1;
+
+    if (!file_exists(filename)) {
+        fprintf(stderr, "File not exists: %s\n", filename);
+        syslog(LOG_ERR, "File not exists: %s\n", filename);
+    }
+    if ((fd = fopen(filename, "r")) == NULL) {
+        fprintf(stderr, "Can't open file: %s\n", filename);
+        syslog(LOG_ERR, "Can't open file: %s\n", filename);
+    }
+
+    if (fscanf(fd, "%d\n", &time) == EOF) {
+        fprintf(stderr, "Can't scan file: %s\n", filename);
+        syslog(LOG_ERR, "Can't scan file: %s\n", filename);
+    }
+    fclose(fd);
+
+    return time;
+}
+
+void sig_hup_handler() {
+    int time = load_configuration_time(FILENAME);
+    clear_interval();
+    create_interval(time, save_time_to_file);
+}
+
 int main(int argc, char * argv[]) {
-    /* 1) uruchamiamy demona */
+    /* 1) pobieramy konfigurację */
+    int time = load_configuration_time(FILENAME);
+
+    /* 2) odświeżamy czas w przypadku odpowiedniego sygnału */
+    signal(SIGHUP, sig_hup_handler);
+
+    /* 3) uruchamiamy demona */
     daemon(1, 1);
 
-    /* 2) informujemy syslogd o uruchomieniu */
+    /* 4) informujemy syslogd o uruchomieniu */
     openlog(argv[0], LOG_PID, 0);
 
-    /* 3) zapisujemy do pliku co jedną minutę aktualny timestamp */
-    create_interval(10, save_time_to_file);
+    /* 5) zapisujemy do pliku co jedną minutę aktualny timestamp */
+    create_interval(time, save_time_to_file);
 
     return 0;
 }
