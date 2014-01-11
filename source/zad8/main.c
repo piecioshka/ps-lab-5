@@ -96,7 +96,7 @@ void sig_hup_handler() {
 }
 
 int main(int argc, char * argv[]) {
-    /* 1) pobieramy konfigurację */
+    /* 1) pobieramy z konfiguracji time */
     int time = load_configuration_time(FILENAME);
 
     /* 2) odświeżamy czas w przypadku odpowiedniego sygnału */
