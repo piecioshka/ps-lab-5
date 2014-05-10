@@ -47,7 +47,7 @@ void create_interval(int seconds, void (*func)()) {
     time_t start, end;
     time(&start);
 
-    for(x = 1;x == 1;) {
+    for (x = 1;x == 1;) {
         time(&end);
         if (difftime(end, start) >= seconds) {
             func();
