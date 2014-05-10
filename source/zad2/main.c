@@ -27,13 +27,13 @@ int main(int argc, char * argv[]) {
         case -1: printf("error"); break;
         case 0:
             /* potomny */
-            for(i = 0; i < n; ++i) {
+            for (i = 0; i < n; ++i) {
                 printf("a");
             }
             break;
         default:
             /* macierzysty */
-            for(i = 0; i < n; ++i) {
+            for (i = 0; i < n; ++i) {
                 printf("A");
             }
     }
